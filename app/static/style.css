@@ -103,16 +103,18 @@ footer a:hover {
 
 /* Marquee */
 .marquee {
+    margin-top: 15px;
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 300px; /* Adjust height as needed */
+    height: 200px;
 }
 
 .marquee-container {
     display: flex;
     transition: transform 0.5s ease-in-out;
     width: 300%; /* Assuming 3 images */
+    height: 200px;
 }
 
 .marquee-container a {
@@ -124,7 +126,7 @@ footer a:hover {
 .marquee-container img {
     display: block; /* Removes any extra spacing below the image */
     width: auto; /* Preserve the aspect ratio */
-    height: 100%; /* Inherit the height of the marquee */
+    height: 200px;
     margin: 0 auto; /* Center the image horizontally if smaller */
     object-fit: contain; /* Ensures the entire image fits within the marquee */
 }
@@ -156,6 +158,13 @@ footer a:hover {
 
 .marquee-controls button:focus {
     outline: none;
+}
+
+/* Update */
+.update {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Archive */

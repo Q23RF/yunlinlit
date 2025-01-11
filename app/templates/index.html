@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Index{% endblock %}
+{% block title %}首頁{% endblock %}
 {% block content %}
 <div class="marquee">
     <div class="marquee-container">
@@ -14,7 +14,7 @@
 </div>
 
 <div class="blogs">
-    <h2>Blogs</h2>
+    <h2>公告</h2>
     <ul>
         {% for blog in blogs %}
             <li><strong>{{ blog.title }}</strong>: {{ blog.content }}</li>

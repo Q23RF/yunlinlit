@@ -16,13 +16,16 @@ def update():
     password = os.getenv("UPDATE_PASSWORD", "admin123")
     if request.method == "POST":
         if request.form.get("password") != password:
-            flash("Invalid password!", "danger")
+            flash("密碼錯誤", "danger")
+            print("wrong pwd")
         else:
             title = request.form.get("title")
             content = request.form.get("content")
             if title and content:
                 blogs.append({"title": title, "content": content})
-                flash("Blog added successfully!", "success")
+                flash("上傳成功", "success")
+                print(blogs)
+
             return redirect(url_for("main.index"))
     return render_template("update.html")
 

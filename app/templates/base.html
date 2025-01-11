@@ -20,15 +20,15 @@
     </header>
     <div class="sidebar collapsed">
         <button class="sidebar-toggle" onclick="toggleSidebar()">〉</button>
-        <a href="{{ url_for('main.index') }}">Home</a>
-        <a href="{{ url_for('main.update') }}">Update Blogs</a>
-        <a href="{{ url_for('main.archive') }}">Archive</a>
+        <a href="{{ url_for('main.index') }}">首頁</a>
+        <a href="{{ url_for('main.update') }}">公告上傳</a>
+        <a href="{{ url_for('main.archive') }}">作品集</a>
     </div>
     <main>
         {% block content %}{% endblock %}
     </main>
     <footer>
-        <p>Contact us: <a href="mailto:s1132927@mail.ncyu.edu.tw">s1132927@mail.ncyu.edu.tw</a></p>
+        <p>信箱: <a href="mailto:s1132927@mail.ncyu.edu.tw">s1132927@mail.ncyu.edu.tw</a></p>
     </footer>
 </body>
 </html>
