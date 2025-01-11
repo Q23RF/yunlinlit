@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<div class="marquee">
+    <div class="marquee-container">
+        <a href="#link1"><img src="{{ url_for('static', filename='images/index/index1.jpg') }}" alt="Image 1"></a>
+        <a href="#link2"><img src="{{ url_for('static', filename='images/index/index2.jpg') }}" alt="Image 2"></a>
+        <a href="#link3"><img src="{{ url_for('static', filename='images/index/index3.jpg') }}" alt="Image 3"></a>
+    </div>
+    <div class="marquee-controls">
+        <button id="prev-btn">❮</button>
+        <button id="next-btn">❯</button>
+    </div>
+</div>
+
+<div class="blogs">
+    <h2>Blogs</h2>
+    <ul>
+        {% for blog in blogs %}
+            <li><strong>{{ blog.title }}</strong>: {{ blog.content }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.querySelector('.marquee-container');
+        const images = container.querySelectorAll('a');
+        const totalImages = images.length;
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        let currentIndex = 0;
+        let timer;
+    
+        // Helper function to update marquee position
+        function updateMarquee() {
+            container.style.transform = `translateX(-${currentIndex * 100}vw)`;
+        }
+    
+        // Navigate to the next image
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateMarquee();
+            resetTimer();
+        }
+    
+        // Navigate to the previous image
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            updateMarquee();
+            resetTimer();
+        }
+    
+        // Reset the auto-scroll timer
+        function resetTimer() {
+            clearInterval(timer);
+            timer = setInterval(nextImage, 10000); // 10 seconds
+        }
+    
+        // Event listeners for controls
+        nextBtn.addEventListener('click', nextImage);
+        prevBtn.addEventListener('click', prevImage);
+    
+        // Swipe support (for touch devices)
+        let startX = 0;
+        container.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+    
+        container.addEventListener('touchend', (e) => {
+            const endX = e.changedTouches[0].clientX;
+            const diff = endX - startX;
+    
+            if (diff > 50) {
+                prevImage(); // Swipe right
+            } else if (diff < -50) {
+                nextImage(); // Swipe left
+            }
+        });
+    
+        // Initialize auto-scroll timer
+        timer = setInterval(nextImage, 10000); // 10 seconds
+    });
+    
+</script>
+{% endblock %}
